@@ -1,6 +1,5 @@
-const add = (a:number,b:number) :string => {
-    const result = a + b;
-    return result.toString();
+const max = (number:Array<number>) :string => {
+    return Math.max(...number).toString();
 }
-const result = add(1,2) + 0;
-console.log(result, 'type of result:', typeof result);
+
+console.log(max([1,2,3,4,5]));
