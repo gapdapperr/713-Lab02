@@ -5,7 +5,7 @@ const findMax = (number: number[]) :string => {
 let number: number[] = [1,2,3,4,5]; 
 console.log(findMax(number));
 
-import { add, subtract } from "./function";
+import add, {  subtract } from "./function";
 
 const result = add(1,2) + 0;
 const result2 = subtract(1,2) + 0;
