@@ -50,7 +50,7 @@ const events: Event[] = [
     },
     {
         id: 4,
-        category: "Theatre",
+        category: "Sports",
         title: "Musical",
         description: "A live musical",
         location: "Liverpool",
@@ -61,7 +61,7 @@ const events: Event[] = [
     },
     {
         id: 5,
-        category: "Comedy",
+        category: "Sports",
         title: "Stand-up",
         description: "A live stand-up comedy show",
         location: "Leeds",
@@ -94,7 +94,9 @@ app.get("/test", (req: Request, res: Response) => {
 });
 
 app.get("/events", (req, res) => {
-  res.json(events);
+  const category = req.query.category;
+  const filteredEvents = events.filter((event) => event.category === category);
+  res.json(filteredEvents);
 });
 
 app.listen(port, () => {
