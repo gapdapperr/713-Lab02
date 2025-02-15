@@ -24,3 +24,12 @@ services:
 
 volumes:
   mysql_data:
+
+
+# https://bwmcfuxuhqmvcqblgilv.supabase.co/storage/v1/s3
+
+# ap-southeast-1
+
+# 2b31916c18c0ae98be40385b8efefe9b
+
+# 202f3d64a2d610ef5a2a9dda35e9850b8905cd52d62540672aebb280a1d1a75a
