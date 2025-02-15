@@ -1,7 +1,7 @@
 import exp from "constants";
 import type { Event } from "../models/event";
 
-import {getAllEvents as allEvents, getEventById as eventById, addEvent as addNewEvent, getAllEvents} from "../repository/eventRepository"
+import {getAllEvents as allEvents, getEventById as eventById, addEvent as addNewEvent} from "../repository/eventRepository"
 
 export function getEventByCategory(category: string): Promise<Event[]> {
   return getEventByCategory(category);
