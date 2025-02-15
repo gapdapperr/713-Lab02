@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express'
-import { Event,getAllEvents, getEventByCategory, getEventById, addEvent } from './services/eventServices'
+import { getAllEvents, getEventByCategory, getEventById, addEvent } from './services/eventServices'
+import type { Event } from './models/event'
 const app = express()
 const port = 3000
 
@@ -44,7 +45,7 @@ app.get("/events/:id", async (req, res) => {
 
 app.post("/events", async (req, res) => {
   const newEvent: Event = req.body;
-  await addEvent(newEvent);
+  await addEvent(newEvent)
   res.json(newEvent);
 });
 
