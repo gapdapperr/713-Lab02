@@ -15,7 +15,7 @@ try {
     return res.status(400).send('No file uploaded.');
   }
   const bucket = 'New bucket';
-  const filePath = `uploads/${file.originalname}`;
+  const filePath = `uploads`;
 
   // await uploadFile(bucket, filePath, file)
   const outputUrl = await uploadFile(bucket, filePath, file);
