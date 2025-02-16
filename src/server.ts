@@ -14,7 +14,7 @@ try {
   if (!file) {
     return res.status(400).send('No file uploaded.');
   }
-  const bucket = 'New bucket';
+  const bucket = 'images';
   const filePath = `uploads`;
 
   // await uploadFile(bucket, filePath, file)
