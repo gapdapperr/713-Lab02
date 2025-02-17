@@ -1,14 +1,14 @@
 import express, { Request, Response } from 'express'
-import { getAllEvents, getEventByCategory, getEventById, addEvent } from './services/eventServices'
-import type { Event } from './models/event'
 import multer from 'multer'
 import dotenv from 'dotenv'
+import eventRoute from './routes/eventRoute'
 dotenv.config()
 import { uploadFile } from './services/UploadFileService'
 const app = express()
 const port = 3000
 const upload = multer({ storage: multer.memoryStorage() })
-
+app.use(express.json());
+app.use('/events', eventRoute);
 
 app.post('/upload', upload.single('file'), async (req: any, res: any) => {
 try {
@@ -31,7 +31,6 @@ try {
 }
 
 });
-app.use(express.json());
 
 
 app.get('/', (req: Request, res: Response) => {
@@ -43,38 +42,6 @@ app.get("/test", (req: Request, res: Response) => {
     const output = `id: ${id}`;
     res.send(output);
 });
-
-
-
-app.get("/events", async (req, res) => {
-  if (req.query.category) {
-    const category = req.query.category;
-    const filteredEvents = await getEventByCategory(category as string);
-    res.json(filteredEvents);
-    } else {
-    res.json(await getAllEvents());
-    }
-});
-
-
-app.get("/events/:id", async (req, res) => {
-  const id = parseInt(req.params.id);
-  const event = await getEventById(id);
-  if (event) {
-  res.json(event);
-  } else {
-  res.status(404).send("Event not found");
-  }
-}); 
-
-
-app.post("/events", async (req, res) => {
-  const newEvent: Event = req.body;
-  await addEvent(newEvent)
-  res.json(newEvent);
-});
-
-
 
 
 app.listen(port, () => {
