@@ -28,3 +28,9 @@ export function addEvent(newEvent: Event) {
     },
   });
 }
+
+export function getAllEventsWithOrganizer(): Promise<Event[]> {
+  return prisma.event.findMany({
+    include: { organizer: true },
+  });
+}
