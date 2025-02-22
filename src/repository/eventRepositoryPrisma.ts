@@ -12,7 +12,10 @@ export function getAllEvents() {
 }
 
 export function getEventById(id: number) {
-  return prisma.event.findUnique({ where: { id }, include: { organizer: true } });
+  return prisma.event.findUnique({
+    where: { id },
+    include: { organizer: true },
+  });
 }
 
 export function addEvent(newEvent: Event) {
@@ -31,8 +34,15 @@ export function addEvent(newEvent: Event) {
 
 export function getAllEventsWithOrganizer(): Promise<Event[]> {
   return prisma.event.findMany({
-    include: { organizer: {
-      select: { name: true}
-    } },
+    select: {
+      id: true,
+      category: true,
+      OrganizerId: false,
+      organizer: {
+        select: {
+          name: true,
+        },
+      },
+    },
   });
 }
