@@ -1,7 +1,6 @@
 import express,{Request, Response} from 'express';
 import {getAllEvents, getEventByCategory, getEventById, addEvent} from "../services/eventServices"
 import type {Event} from "../models/event"
-import exp from 'constants';
 
 const router = express.Router();
 
