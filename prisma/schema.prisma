@@ -24,6 +24,14 @@ model event {
   petsAllowed Boolean
   OrganizerId Int?
   organizer   organizer? @relation(fields: [OrganizerId], references: [id])
+  participants participant[]
+}
+
+ model participant {
+  id     Int     @id @default(autoincrement())
+  name   String
+  email  String
+  events event[]
 }
 
 model organizer {

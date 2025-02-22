@@ -47,6 +47,13 @@ export function getAllEventsWithOrganizer(): Promise<Event[]> {
           name: true,
         },
       },
+      participants: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          events: true
+        
     },
-  });
+  }}});
 }
