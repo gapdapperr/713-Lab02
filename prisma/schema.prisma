@@ -22,7 +22,7 @@ model event {
   date        String
   time        String
   petsAllowed Boolean
-  OrganizerId Int
+  OrganizerId Int?
   organizer   organizer? @relation(fields: [OrganizerId], references: [id])
 }
 
