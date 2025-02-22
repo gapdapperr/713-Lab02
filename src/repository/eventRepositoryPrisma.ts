@@ -18,19 +18,21 @@ export function getEventById(id: number) {
 export function addEvent(newEvent: Event) {
   return prisma.event.create({
     data: {
-      category: newEvent.category,
-      title: newEvent.title,
-      description: newEvent.description,
-      location: newEvent.location,
-      date: newEvent.date,
-      time: newEvent.time,
-      petsAllowed: newEvent.petsAllowed
+      category: newEvent.category || "",
+      title: newEvent.title || "",
+      description: newEvent.description || "",
+      location: newEvent.location || "",
+      date: newEvent.date || "",
+      time: newEvent.time || "",
+      petsAllowed: newEvent.petsAllowed || false,
     },
   });
 }
 
 export function getAllEventsWithOrganizer(): Promise<Event[]> {
   return prisma.event.findMany({
-    include: { organizer: true },
+    include: { organizer: {
+      select: { name: true}
+    } },
   });
 }
