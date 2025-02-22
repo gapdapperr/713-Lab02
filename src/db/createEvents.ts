@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import add from "../function2";
 
 const prisma = new PrismaClient();
 
@@ -89,8 +90,36 @@ export async function createEvents() {
     data: {
       name: "CAMT",
     },
-  });
+  })
+
+  const responseEvent = await prisma.event.findMany();
+
+  await prisma.event.update({
+    where: { id: responseEvent[0].id },
+    data: {
+        organizer: {
+            connect: {
+                id: chiangMaiOrg.id,
+            }}}})
+
+            addOrganizerToEvent(responseEvent[1].id, chiangMaiOrg.id);
+            addOrganizerToEvent(responseEvent[2].id, cmuOrg.id);
+            addOrganizerToEvent(responseEvent[3].id, camtOrg.id);
+            addOrganizerToEvent(responseEvent[4].id, chiangMaiOrg.id);
+            addOrganizerToEvent(responseEvent[5].id, cmuOrg.id);
 console.log("Database has been initialized with events.");
 
 }
 
+async function addOrganizerToEvent(eventId: number, organizerId: number) {
+  await prisma.event.update({
+    where: { id: eventId },
+    data: {
+      organizer: {
+        connect: {
+          id: organizerId,
+        },
+      },
+    },
+  });
+}
