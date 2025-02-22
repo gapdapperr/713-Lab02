@@ -14,7 +14,11 @@ export function getAllEvents() {
 export function getEventById(id: number) {
   return prisma.event.findUnique({
     where: { id },
-    include: { organizer: true },
+    select: {
+      title: true,
+      time: true,
+      OrganizerId: true
+    },
   });
 }
 
