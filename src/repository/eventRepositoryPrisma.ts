@@ -12,7 +12,7 @@ export function getAllEvents() {
 }
 
 export function getEventById(id: number) {
-  return prisma.event.findUnique({ where: { id } });
+  return prisma.event.findUnique({ where: { id }, include: { organizer: true } });
 }
 
 export function addEvent(newEvent: Event) {
